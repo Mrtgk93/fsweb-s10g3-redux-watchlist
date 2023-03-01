@@ -2,7 +2,7 @@ import { Switch, Route, NavLink } from "react-router-dom";
 import Movie from "./components/Movie";
 import FavMovie from "./components/FavMovie";
 import { useSelector } from "react-redux";
-import { sıradaki, listemeEkle } from "./action";
+import { sıradaki, listemeEkle, onceki, basaDon } from "./action";
 import { useDispatch } from "react-redux";
 import { movies } from "./movies";
 
@@ -37,11 +37,28 @@ function App() {
 
           <div className="flex gap-3 justify-end py-3">
             <button
+              onClick={() => dispatch(basaDon())}
+              className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+            >
+              Başa Dön
+            </button>
+            <button
+              onClick={() =>
+                dispatch(
+                  sira != 0 ? onceki() : console.log("daha geriye gidemessin")
+                )
+              }
+              className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
+            >
+              Önceki
+            </button>
+            <button
               onClick={() => dispatch(sıradaki())}
               className="select-none px-4 py-2 border border-blue-700 text-blue-700 hover:border-blue-500 hover:text-blue-500"
             >
               Sıradaki
             </button>
+
             <button
               onClick={() => dispatch(listemeEkle(movies[sira]))}
               className="select-none px-4 py-2 bg-blue-700 hover:bg-blue-600 text-white"

@@ -1,4 +1,10 @@
-import { LISTEMEEKLE, SIRADAKI, LISTEDENCIKAR } from "./action";
+import {
+  LISTEMEEKLE,
+  SIRADAKI,
+  LISTEDENCIKAR,
+  ONCEKI,
+  BASADON,
+} from "./action";
 import { movies } from "./movies";
 
 const initialState = {
@@ -23,6 +29,16 @@ export function alfred(state = initialState, action) {
       return {
         ...state,
         sira: state.sira + 1,
+      };
+    case ONCEKI:
+      return {
+        ...state,
+        sira: state.sira - 1,
+      };
+    case BASADON:
+      return {
+        ...state,
+        sira: initialState.sira,
       };
     default:
       return state;

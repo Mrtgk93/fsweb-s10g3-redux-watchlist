@@ -4,12 +4,19 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { legacy_createStore as createStore } from "redux";
+import { legacy_createStore as createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { alfred } from "./reducer";
+import { createLogger } from "redux-logger";
 
-const depo = createStore(alfred);
+const logger = createLogger({
+  diff: true,
+  collapsed: true,
+});
+const depo = createStore(alfred, applyMiddleware(logger));
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <Provider store={depo}>
     <BrowserRouter>
