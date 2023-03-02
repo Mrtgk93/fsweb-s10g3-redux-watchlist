@@ -9,12 +9,12 @@ export function listemeEkle(id) {
 }
 
 export function sıradaki(sira) {
-  if (sira > 18) {
+  if (sira !== 19) {
+    return { type: SIRADAKI };
+  } else {
     return {
       type: null,
     };
-  } else {
-    return { type: SIRADAKI };
   }
 }
 
